@@ -219,6 +219,7 @@ namespace LiteCryptConsole
                 else if (ch == 'f' | ch == 'F')//FULL HASH
                 {
                     FullHashCalc();
+                    break;
                 }
             }
             Console.ReadKey();
