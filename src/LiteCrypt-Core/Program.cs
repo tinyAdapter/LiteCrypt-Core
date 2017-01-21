@@ -64,16 +64,16 @@ namespace LiteCryptConsole
                         {
                             Console.Write("\nInput File Path: ");
                             md5.FilePath = Console.ReadLine();
-                            string md5Code = md5.ComputeHashFromFile();
-                            Console.WriteLine($"The MD5 Code is: {md5Code}");
+                            string hashCode = md5.ComputeHashFromFile();
+                            Console.WriteLine($"The MD5 Code is: {hashCode}");
                             break;
                         }
                         else if (ch == 't' || ch == 'T')
                         {
                             Console.Write("\nInput Text: ");
                             md5.Text = Console.ReadLine();
-                            string md5Code = md5.ComputeHashFromText();
-                            Console.WriteLine($"The MD5 Code is: {md5Code}");
+                            string hashCode = md5.ComputeHashFromText();
+                            Console.WriteLine($"The MD5 Code is: {hashCode}");
                             break;
                         }
                     }
@@ -91,21 +91,104 @@ namespace LiteCryptConsole
                         {
                             Console.Write("\nInput File Path: ");
                             sha1.FilePath = Console.ReadLine();
-                            string sha1Code = sha1.ComputeHashFromFile();
-                            Console.WriteLine($"The SHA1 Code is: {sha1Code}");
+                            string hashCode = sha1.ComputeHashFromFile();
+                            Console.WriteLine($"The SHA1 Code is: {hashCode}");
                             break;
                         }
                         else if (ch == 't' || ch == 'T')
                         {
                             Console.Write("\nInput Text: ");
                             sha1.Text = Console.ReadLine();
-                            string sha1Code = sha1.ComputeHashFromText();
-                            Console.WriteLine($"The SHA1 Code is: {sha1Code}");
+                            string hashCode = sha1.ComputeHashFromText();
+                            Console.WriteLine($"The SHA1 Code is: {hashCode}");
                             break;
                         }
                     }
                     break;
-                }  
+                }
+                else if (ch == '4')//SHA256
+                {
+                    LiteCrypt.SHA256 sha256 = new LiteCrypt.SHA256();
+                    Console.Write("\nChoose File or Text [f/t]: ");
+
+                    while (true)
+                    {
+                        ch = Console.ReadKey().KeyChar;
+                        if (ch == 'f' || ch == 'F')
+                        {
+                            Console.Write("\nInput File Path: ");
+                            sha256.FilePath = Console.ReadLine();
+                            string hashCode = sha256.ComputeHashFromFile();
+                            Console.WriteLine($"The SHA256 Code is: {hashCode}");
+                            break;
+                        }
+                        else if (ch == 't' || ch == 'T')
+                        {
+                            Console.Write("\nInput Text: ");
+                            sha256.Text = Console.ReadLine();
+                            string hashCode = sha256.ComputeHashFromText();
+                            Console.WriteLine($"The SHA256 Code is: {hashCode}");
+                            break;
+                        }
+                    }
+                    break;
+                }
+
+                else if (ch == '5')//SHA384
+                {
+                    LiteCrypt.SHA384 sha384 = new LiteCrypt.SHA384();
+                    Console.Write("\nChoose File or Text [f/t]: ");
+
+                    while (true)
+                    {
+                        ch = Console.ReadKey().KeyChar;
+                        if (ch == 'f' || ch == 'F')
+                        {
+                            Console.Write("\nInput File Path: ");
+                            sha384.FilePath = Console.ReadLine();
+                            string hashCode = sha384.ComputeHashFromFile();
+                            Console.WriteLine($"The SHA384 Code is: {hashCode}");
+                            break;
+                        }
+                        else if (ch == 't' || ch == 'T')
+                        {
+                            Console.Write("\nInput Text: ");
+                            sha384.Text = Console.ReadLine();
+                            string hashCode = sha384.ComputeHashFromText();
+                            Console.WriteLine($"The SHA384 Code is: {hashCode}");
+                            break;
+                        }
+                    }
+                    break;
+                }
+
+                else if (ch == '6')//SHA512
+                {
+                    LiteCrypt.SHA512 sha512 = new LiteCrypt.SHA512();
+                    Console.Write("\nChoose File or Text [f/t]: ");
+
+                    while (true)
+                    {
+                        ch = Console.ReadKey().KeyChar;
+                        if (ch == 'f' || ch == 'F')
+                        {
+                            Console.Write("\nInput File Path: ");
+                            sha512.FilePath = Console.ReadLine();
+                            string hashCode = sha512.ComputeHashFromFile();
+                            Console.WriteLine($"The SHA512 Code is: {hashCode}");
+                            break;
+                        }
+                        else if (ch == 't' || ch == 'T')
+                        {
+                            Console.Write("\nInput Text: ");
+                            sha512.Text = Console.ReadLine();
+                            string hashCode = sha512.ComputeHashFromText();
+                            Console.WriteLine($"The SHA512 Code is: {hashCode}");
+                            break;
+                        }
+                    }
+                    break;
+                }
             }
             Console.ReadKey();
         }
@@ -122,8 +205,8 @@ namespace LiteCryptConsole
 
         public static void PrintCryptographyTable()
         {
-            Console.WriteLine("|> 1.TripleDES\t2.MD5\t3.SHA1");
-            Console.WriteLine("|> F.FULL HASH CALC (Under Coding...)");
+            Console.WriteLine("1.TripleDES\t2.MD5\t\t3.SHA1\t\t4.SHA256\t5.SHA384\t6.SHA512");
+            Console.WriteLine("F.FULL HASH CALC (Under Coding...)");
             Console.Write("Choose Cryptography: ");
         }
     }
