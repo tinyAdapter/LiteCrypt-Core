@@ -216,7 +216,7 @@ namespace LiteCryptConsole
                     }
                     break;
                 }
-                else if (ch == 'F')//FULL HASH
+                else if (ch == 'f' | ch == 'F')//FULL HASH
                 {
                     FullHashCalc();
                 }
@@ -236,15 +236,41 @@ namespace LiteCryptConsole
 
         public static void PrintCryptographyTable()
         {
-            Console.WriteLine("1.TripleDES\t2.MD5\t\t3.SHA1\t\t4.SHA256\t5.SHA384\t6.SHA512");
-            Console.WriteLine("7.CRC32");
-            Console.WriteLine("F.FULL HASH CALC (Under Coding...)");
+            Console.WriteLine("1.TripleDES\t2.MD5\t\t3.SHA1\t\t4.SHA256\t5.SHA384\t6.SHA512\t7.CRC32");
+            Console.WriteLine("F.FULL HASH CALC");
             Console.Write("Choose Cryptography: ");
         }
 
         public static void FullHashCalc()
         {
-
+            string hashCode;
+            Console.Write("\nInput File Path: ");
+            string filePath = Console.ReadLine();
+            Console.WriteLine("|> Hash Code Table");
+            //MD5
+            LiteCrypt.MD5 md5 = new LiteCrypt.MD5();
+            hashCode = md5.ComputeHashFromFile(filePath);
+            Console.WriteLine($"|> MD5\t\t|{hashCode}");    
+            //SHA1
+            LiteCrypt.SHA1 sha1 = new LiteCrypt.SHA1();
+            hashCode = sha1.ComputeHashFromFile(filePath);
+            Console.WriteLine($"|> SHA1\t\t|{hashCode}");
+            //SHA256
+            LiteCrypt.SHA256 sha256 = new LiteCrypt.SHA256();
+            hashCode = sha256.ComputeHashFromFile(filePath);
+            Console.WriteLine($"|> SHA256\t|{hashCode}");
+            //SHA384
+            LiteCrypt.SHA384 sha384 = new LiteCrypt.SHA384();
+            hashCode = sha384.ComputeHashFromFile(filePath);
+            Console.WriteLine($"|> SHA384\t|{hashCode}");
+            //SHA512
+            LiteCrypt.SHA512 sha512 = new LiteCrypt.SHA512();
+            hashCode = sha512.ComputeHashFromFile(filePath);
+            Console.WriteLine($"|> SHA512\t|{hashCode}");
+            //CRC32
+            LiteCrypt.CRC32 crc32 = new LiteCrypt.CRC32();
+            hashCode = crc32.ComputeHashFromFile(filePath);
+            Console.WriteLine($"|> CRC32\t|{hashCode}");
         }
     }
 }
