@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Text;
 using System.IO;
 
@@ -248,30 +249,51 @@ namespace LiteCryptConsole
             Console.Write("\nInput File Path: ");
             string filePath = Console.ReadLine();
             Console.WriteLine("|> Hash Code Table");
-            //MD5
-            LiteCrypt.MD5 md5 = new LiteCrypt.MD5();
-            hashCode = md5.ComputeHashFromFile(filePath);
-            Console.WriteLine($"|> MD5\t\t|{hashCode}");    
-            //SHA1
-            LiteCrypt.SHA1 sha1 = new LiteCrypt.SHA1();
-            hashCode = sha1.ComputeHashFromFile(filePath);
-            Console.WriteLine($"|> SHA1\t\t|{hashCode}");
-            //SHA256
-            LiteCrypt.SHA256 sha256 = new LiteCrypt.SHA256();
-            hashCode = sha256.ComputeHashFromFile(filePath);
-            Console.WriteLine($"|> SHA256\t|{hashCode}");
-            //SHA384
-            LiteCrypt.SHA384 sha384 = new LiteCrypt.SHA384();
-            hashCode = sha384.ComputeHashFromFile(filePath);
-            Console.WriteLine($"|> SHA384\t|{hashCode}");
-            //SHA512
-            LiteCrypt.SHA512 sha512 = new LiteCrypt.SHA512();
-            hashCode = sha512.ComputeHashFromFile(filePath);
-            Console.WriteLine($"|> SHA512\t|{hashCode}");
+
             //CRC32
-            LiteCrypt.CRC32 crc32 = new LiteCrypt.CRC32();
-            hashCode = crc32.ComputeHashFromFile(filePath);
-            Console.WriteLine($"|> CRC32\t|{hashCode}");
+            Task t6 = new Task(() => {
+                LiteCrypt.CRC32 crc32 = new LiteCrypt.CRC32();
+                hashCode = crc32.ComputeHashFromFile(filePath);
+                Console.WriteLine($"|> CRC32\t|{hashCode}");
+            });
+            t6.Start();
+            //SHA512
+            Task t5 = new Task(() => {
+                LiteCrypt.SHA512 sha512 = new LiteCrypt.SHA512();
+                hashCode = sha512.ComputeHashFromFile(filePath);
+                Console.WriteLine($"|> SHA512\t|{hashCode}");
+            });
+            t5.Start();
+            //SHA384
+            Task t4 = new Task(() => {
+                LiteCrypt.SHA384 sha384 = new LiteCrypt.SHA384();
+                hashCode = sha384.ComputeHashFromFile(filePath);
+                Console.WriteLine($"|> SHA384\t|{hashCode}");
+            });
+            t4.Start();
+            //SHA256
+            Task t3 = new Task(() => {
+                LiteCrypt.SHA256 sha256 = new LiteCrypt.SHA256();
+                hashCode = sha256.ComputeHashFromFile(filePath);
+                Console.WriteLine($"|> SHA256\t|{hashCode}");
+            });
+            t3.Start();
+            //SHA1
+            Task t2 = new Task(() => {
+                LiteCrypt.SHA1 sha1 = new LiteCrypt.SHA1();
+                hashCode = sha1.ComputeHashFromFile(filePath);
+                Console.WriteLine($"|> SHA1\t\t|{hashCode}");
+            });
+            t2.Start();
+            //MD5
+            Task t1 = new Task(() => {
+                LiteCrypt.MD5 md5 = new LiteCrypt.MD5();
+                hashCode = md5.ComputeHashFromFile(filePath);
+                Console.WriteLine($"|> MD5\t\t|{hashCode}");
+            });
+            t1.Start();
+            //Wait for tasks finished
+            Task.WaitAll(t1, t2, t3, t4, t5, t6);
         }
     }
 }
