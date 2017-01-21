@@ -17,10 +17,10 @@ namespace LiteCrypt
             try
             {
                 FileStream fs = File.OpenRead(filePath);
-                byte[] fileBytes = new byte[fs.Length];
-                for (int i = 0; i < fs.Length; i++)
-                    fileBytes[i] = Convert.ToByte(fs.ReadByte());
-                uint result = this.CalculateDigest(fileBytes, 0, Convert.ToUInt32(fileBytes.Length));
+                long fsLength = fs.Length;
+                for (long i = 0; i < fsLength; i++)
+                    _value = Table[(((byte)(_value)) ^ fs.ReadByte())] ^ (_value >> 8);
+                uint result = _value ^ 0xFFFFFFFF;
                 return String.Format("{0:x}", result);
             }
             catch (Exception e)
@@ -34,7 +34,7 @@ namespace LiteCrypt
             try
             {
                 byte[] textBytes = Encoding.UTF8.GetBytes(text);
-                uint result = this.CalculateDigest(textBytes, 0, Convert.ToUInt32(textBytes.Length));
+                uint result = this.CalculateDigest(textBytes, 0, textBytes.Length);
                 return String.Format("{0:x}", result);
             }
             catch (Exception e)
@@ -65,20 +65,19 @@ namespace LiteCrypt
 
         private void UpdateByte(byte b) { _value = Table[(((byte)(_value)) ^ b)] ^ (_value >> 8); }
 
-        private void Update(byte[] data, uint offset, uint size)
+        private void Update(byte[] data, long offset, long size)
         {
-            for (uint i = 0; i < size; i++)
+            for (long i = 0; i < size; i++)
                 _value = Table[((byte)_value) ^ data[offset + i]] ^ (_value >> 8);
 
         }
 
         private uint GetDigest() { return _value ^ 0xFFFFFFFF; }
 
-        private uint CalculateDigest(byte[] data, uint offset, uint size)
+        private uint CalculateDigest(byte[] data, long offset, long size)
         {
-            CRC32 crc32 = new CRC32();
-            crc32.Update(data, offset, size);
-            return crc32.GetDigest();
+            Update(data, offset, size);
+            return GetDigest();
         }
     }
 }
