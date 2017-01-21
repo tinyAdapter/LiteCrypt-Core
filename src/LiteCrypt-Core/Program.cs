@@ -189,6 +189,37 @@ namespace LiteCryptConsole
                     }
                     break;
                 }
+                else if (ch == '7')//CRC32
+                {
+                    LiteCrypt.CRC32 crc32 = new LiteCrypt.CRC32();
+                    Console.Write("\nChoose File or Text [f/t]: ");
+
+                    while (true)
+                    {
+                        ch = Console.ReadKey().KeyChar;
+                        if (ch == 'f' || ch == 'F')
+                        {
+                            Console.Write("\nInput File Path: ");
+                            crc32.FilePath = Console.ReadLine();
+                            string hashCode = crc32.ComputeHashFromFile();
+                            Console.WriteLine($"The CRC32 Code is: {hashCode}");
+                            break;
+                        }
+                        else if (ch == 't' || ch == 'T')
+                        {
+                            Console.Write("\nInput Text: ");
+                            crc32.Text = Console.ReadLine();
+                            string hashCode = crc32.ComputeHashFromText();
+                            Console.WriteLine($"The CRC32 Code is: {hashCode}");
+                            break;
+                        }
+                    }
+                    break;
+                }
+                else if (ch == 'F')//FULL HASH
+                {
+                    FullHashCalc();
+                }
             }
             Console.ReadKey();
         }
@@ -206,8 +237,14 @@ namespace LiteCryptConsole
         public static void PrintCryptographyTable()
         {
             Console.WriteLine("1.TripleDES\t2.MD5\t\t3.SHA1\t\t4.SHA256\t5.SHA384\t6.SHA512");
+            Console.WriteLine("7.CRC32");
             Console.WriteLine("F.FULL HASH CALC (Under Coding...)");
             Console.Write("Choose Cryptography: ");
+        }
+
+        public static void FullHashCalc()
+        {
+
         }
     }
 }
