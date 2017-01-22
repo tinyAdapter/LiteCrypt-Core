@@ -4,17 +4,17 @@ using System.Collections.Generic;
 using System.Text;
 using System.Security.Cryptography;
 
-namespace LiteCrypt
+namespace LiteCrypt.Core
 {
-    class MD5 : Hash
+    class SHA256 : Hash
     {
         public override string ComputeHashFromFile(string filePath)
         {
             try
             {
-                System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5.Create();
+                System.Security.Cryptography.SHA256 sha256 = System.Security.Cryptography.SHA256.Create();
                 FileStream fs = File.OpenRead(filePath);
-                byte[] outputBytes = md5.ComputeHash(fs);
+                byte[] outputBytes = sha256.ComputeHash(fs);
                 return BitConverter.ToString(outputBytes).Replace("-", "").ToLower();
             }
             catch (Exception e)
@@ -27,9 +27,9 @@ namespace LiteCrypt
         {
             try
             {
-                System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5.Create();
+                System.Security.Cryptography.SHA256 sha256 = System.Security.Cryptography.SHA256.Create();
                 byte[] inputBytes = Encoding.UTF8.GetBytes(text);
-                byte[] outputBytes = md5.ComputeHash(inputBytes);
+                byte[] outputBytes = sha256.ComputeHash(inputBytes);
                 return BitConverter.ToString(outputBytes).Replace("-", "").ToLower();
             }
             catch (Exception e)

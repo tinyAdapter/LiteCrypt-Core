@@ -3,7 +3,7 @@ using System.IO;
 using System.Text;
 using System.Security.Cryptography;
 
-namespace LiteCrypt
+namespace LiteCrypt.Core
 {
     public class TripleDES : Cryptography, ISymmetric
     {

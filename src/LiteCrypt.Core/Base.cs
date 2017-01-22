@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LiteCrypt
+namespace LiteCrypt.Core
 {
     public class Cryptography
     {

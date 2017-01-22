@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LiteCrypt
+namespace LiteCrypt.Core
 {
     /// <summary>
     /// Reference: https://www.cnblogs.com/clso/archive/2010/11/29/1891082.html
