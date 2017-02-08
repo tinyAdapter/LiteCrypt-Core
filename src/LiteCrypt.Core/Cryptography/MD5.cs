@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 
 namespace LiteCrypt.Core
 {
-    class MD5 : Hash
+    public class MD5 : Hash
     {
         public override string ComputeHashFromFile(string filePath)
         {
