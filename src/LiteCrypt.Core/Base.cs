@@ -1,17 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace LiteCrypt.Core
+﻿namespace LiteCrypt.Core
 {
     public class Cryptography
     {
-        public string Text { get; set; }
-        public string FilePath { get; set; }
+        private string t;
+        public string Text
+        {
+            get { return t; }
+            set { t = value; }
+        }
+        public string FilePath
+        {
+            get { return t; }
+            set { t = value; }
+        }
+    }
+    public abstract class Symmetric : Cryptography, ISymmetric
+    {
+        public string Key { get; set; }
+        public string IV { get; set; }
+        public abstract string Decrypt(string cipherText, string key, string iv);
+        public abstract string Encrypt(string plainText);
     }
     public interface ISymmetric
     {
         string Key { get; set; }
+        string IV { get; set; }
         string Encrypt(string plainText);
         string Decrypt(string cipherText, string key, string iv);
     }

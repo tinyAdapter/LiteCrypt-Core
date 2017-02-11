@@ -228,9 +228,71 @@ namespace LiteCrypt
                         }
                         break;
                     }
+                    else if (ch == '8')//AES
+                    {
+                        Core.AES aes = new Core.AES();
+                        Console.Write("\nChoose Encrypt or Decrypt [e/d]: ");
+
+                        while (true)
+                        {
+                            ch = Console.ReadKey().KeyChar;
+                            if (ch == 'e' || ch == 'E')
+                            {
+                                Console.Write("\nInput PlainText: ");
+                                aes.Text = Console.ReadLine();
+
+                                string cipherText = aes.Encrypt();
+                                Console.WriteLine($"Get Random Key: {aes.Key}");
+                                Console.WriteLine($"Get Random IV: {aes.IV}");
+                                Console.WriteLine($"The Cipher Text is: {cipherText}");
+                                break;
+                            }
+                            else if (ch == 'd' || ch == 'D')
+                            {
+                                Console.Write("\nInput CipherText: ");
+                                aes.Text = Console.ReadLine();
+
+                                Console.Write("Input Key: ");
+                                aes.Key = Console.ReadLine();
+                                Console.Write("Input IV: ");
+                                aes.IV = Console.ReadLine();
+
+                                string plainText = aes.Decrypt();
+                                Console.WriteLine($"The Plain Text is: {plainText}");
+                                break;
+                            }
+                        }
+                        break;
+                    }
                     else if (ch == 'f' | ch == 'F')//FULL HASH
                     {
                         FullHashCalc(String.Empty);
+                        break;
+                    }
+                    else if (ch == 'b' | ch == 'B')//BASE64 Code
+                    {
+                        Console.Write("\nChoose Encode or Decode [e/d]: ");
+
+                        while (true)
+                        {
+                            ch = Console.ReadKey().KeyChar;
+                            if (ch == 'e' || ch == 'E')
+                            {
+                                Console.Write("\nInput PlainText: ");
+                                string plainText = Console.ReadLine();
+                                string cipherText = Core.Base64.Encode(plainText);
+                                Console.WriteLine($"The Encoded Text is: {cipherText}");
+                                break;
+                            }
+                            else if (ch == 'd' || ch == 'D')
+                            {
+                                Console.Write("\nInput CipherText: ");
+                                string cipherText = Console.ReadLine();
+                                string plainText = Core.Base64.Decode(cipherText);
+                                Console.WriteLine($"The Plain Text is: {plainText}");
+                                break;
+                            }
+                        }
                         break;
                     }
                 }
@@ -250,8 +312,8 @@ namespace LiteCrypt
 
         public static void PrintCryptographyTable()
         {
-            Console.WriteLine("1.TripleDES\t2.MD5\t\t3.SHA1\t\t4.SHA256\t5.SHA384\t6.SHA512\t7.CRC32");
-            Console.WriteLine("F.FULL HASH CALC");
+            Console.WriteLine("1.TripleDES\t2.MD5\t\t3.SHA1\t\t4.SHA256\t5.SHA384\t6.SHA512\n7.CRC32\t\t8.AES");
+            Console.WriteLine("F.FULL HASH CALC\t\tB.Base64");
             Console.Write("Choose Cryptography: ");
         }
 

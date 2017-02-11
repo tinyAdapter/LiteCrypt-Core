@@ -1,18 +1,18 @@
 ﻿using System;
 using System.IO;
-using System.Text;
 using System.Security.Cryptography;
+using System.Text;
 
 namespace LiteCrypt.Core
 {
-    public class TripleDES : Symmetric
+    public class AES : Symmetric
     {
-        public TripleDES() { }
-        public TripleDES(string text)
+        public AES() { }
+        public AES(string text)
         {
             this.Text = text;
         }
-        public TripleDES(string text, string key, string iv)
+        public AES(string text, string key, string iv)
         {
             this.Text = text;
             this.Key = key;
@@ -22,12 +22,12 @@ namespace LiteCrypt.Core
         {
             try
             {
-                System.Security.Cryptography.TripleDES tdes = System.Security.Cryptography.TripleDES.Create();
+                System.Security.Cryptography.Aes aes = System.Security.Cryptography.Aes.Create();
                 byte[] inputBytes = Encoding.UTF8.GetBytes(plainText);
-                this.Key = Convert.ToBase64String(tdes.Key).Replace("-", "");
-                this.IV = Convert.ToBase64String(tdes.IV).Replace("-", "");
+                this.Key = Convert.ToBase64String(aes.Key).Replace("-", "");
+                this.IV = Convert.ToBase64String(aes.IV).Replace("-", "");
                 MemoryStream ms = new MemoryStream();
-                CryptoStream cs = new CryptoStream(ms, tdes.CreateEncryptor(), CryptoStreamMode.Write);
+                CryptoStream cs = new CryptoStream(ms, aes.CreateEncryptor(), CryptoStreamMode.Write);
                 cs.Write(inputBytes, 0, inputBytes.Length);
                 cs.FlushFinalBlock();
                 return Convert.ToBase64String(ms.ToArray());
@@ -45,12 +45,12 @@ namespace LiteCrypt.Core
         {
             try
             {
-                System.Security.Cryptography.TripleDES tdes = System.Security.Cryptography.TripleDES.Create();
+                System.Security.Cryptography.Aes aes = System.Security.Cryptography.Aes.Create();
                 byte[] inputBytes = Convert.FromBase64String(cipherText);
-                tdes.Key = Convert.FromBase64String(key);
-                tdes.IV = Convert.FromBase64String(iv);
+                aes.Key = Convert.FromBase64String(key);
+                aes.IV = Convert.FromBase64String(iv);
                 MemoryStream ms = new MemoryStream();
-                CryptoStream cs = new CryptoStream(ms, tdes.CreateDecryptor(), CryptoStreamMode.Write);
+                CryptoStream cs = new CryptoStream(ms, aes.CreateDecryptor(), CryptoStreamMode.Write);
                 cs.Write(inputBytes, 0, inputBytes.Length);
                 cs.FlushFinalBlock();
                 return Encoding.UTF8.GetString(ms.ToArray());
