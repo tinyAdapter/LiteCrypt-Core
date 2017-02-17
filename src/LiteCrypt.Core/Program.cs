@@ -20,6 +20,9 @@ namespace LiteCrypt
             }
             else
             {
+                //Register Encoding
+                Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+
                 char ch;
                 //Print Title
                 PrintTitle();

@@ -241,5 +241,6 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 
-#VS Code Setting Files
+#VS & VS Code Setting Files
 **/.vscode/
+**/.vs/
