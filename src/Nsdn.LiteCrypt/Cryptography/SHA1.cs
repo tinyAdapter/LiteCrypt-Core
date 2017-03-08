@@ -2,7 +2,7 @@
 using System.IO;
 using System.Text;
 
-namespace LiteCrypt.Core
+namespace Nsdn.LiteCrypt
 {
     public class SHA1 : Hash
     {

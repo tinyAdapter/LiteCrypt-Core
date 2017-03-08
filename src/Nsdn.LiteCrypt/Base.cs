@@ -1,18 +1,10 @@
-﻿namespace LiteCrypt.Core
+﻿namespace Nsdn.LiteCrypt
 {
     public class Cryptography
     {
         private string t;
-        public string Text
-        {
-            get { return t; }
-            set { t = value; }
-        }
-        public string FilePath
-        {
-            get { return t; }
-            set { t = value; }
-        }
+        public string Text { get => t; set => t = value; }
+        public string FilePath { get => t; set => t = value; }
     }
     public abstract class Symmetric : Cryptography, ISymmetric
     {

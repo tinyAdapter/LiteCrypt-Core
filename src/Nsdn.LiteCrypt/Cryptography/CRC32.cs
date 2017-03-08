@@ -2,7 +2,7 @@
 using System.IO;
 using System.Text;
 
-namespace LiteCrypt.Core
+namespace Nsdn.LiteCrypt
 {
     /// <summary>
     /// Reference: https://www.cnblogs.com/clso/archive/2010/11/29/1891082.html

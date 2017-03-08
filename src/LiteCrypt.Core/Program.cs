@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Text;
-using System.IO;
-using LiteCrypt.Core;
+using Nsdn.LiteCrypt;
 
-namespace LiteCrypt
+namespace ConsoleApplication
 {
     public partial class Program
     {
@@ -33,7 +32,7 @@ namespace LiteCrypt
                     ch = Console.ReadKey().KeyChar;
                     if (ch == '1')//Triple-DES
                     {
-                        Core.TripleDES tdes = new Core.TripleDES();
+                        TripleDES tdes = new TripleDES();
                         Console.Write("\nChoose Encrypt or Decrypt [e/d]: ");
 
                         while (true)
@@ -69,7 +68,7 @@ namespace LiteCrypt
                     }
                     else if (ch == '2')//MD5
                     {
-                        Core.MD5 md5 = new Core.MD5();
+                        MD5 md5 = new MD5();
                         Console.Write("\nChoose File or Text [f/t]: ");
 
                         while (true)
@@ -96,7 +95,7 @@ namespace LiteCrypt
                     }
                     else if (ch == '3')//SHA1
                     {
-                        Core.SHA1 sha1 = new Core.SHA1();
+                        SHA1 sha1 = new SHA1();
                         Console.Write("\nChoose File or Text [f/t]: ");
 
                         while (true)
@@ -123,7 +122,7 @@ namespace LiteCrypt
                     }
                     else if (ch == '4')//SHA256
                     {
-                        Core.SHA256 sha256 = new Core.SHA256();
+                        SHA256 sha256 = new SHA256();
                         Console.Write("\nChoose File or Text [f/t]: ");
 
                         while (true)
@@ -151,7 +150,7 @@ namespace LiteCrypt
 
                     else if (ch == '5')//SHA384
                     {
-                        Core.SHA384 sha384 = new Core.SHA384();
+                        SHA384 sha384 = new SHA384();
                         Console.Write("\nChoose File or Text [f/t]: ");
 
                         while (true)
@@ -179,7 +178,7 @@ namespace LiteCrypt
 
                     else if (ch == '6')//SHA512
                     {
-                        Core.SHA512 sha512 = new Core.SHA512();
+                        SHA512 sha512 = new SHA512();
                         Console.Write("\nChoose File or Text [f/t]: ");
 
                         while (true)
@@ -206,7 +205,7 @@ namespace LiteCrypt
                     }
                     else if (ch == '7')//CRC32
                     {
-                        Core.CRC32 crc32 = new Core.CRC32();
+                        CRC32 crc32 = new CRC32();
                         Console.Write("\nChoose File or Text [f/t]: ");
 
                         while (true)
@@ -233,7 +232,7 @@ namespace LiteCrypt
                     }
                     else if (ch == '8')//AES
                     {
-                        Core.AES aes = new Core.AES();
+                        AES aes = new AES();
                         Console.Write("\nChoose Encrypt or Decrypt [e/d]: ");
 
                         while (true)
@@ -283,7 +282,7 @@ namespace LiteCrypt
                             {
                                 Console.Write("\nInput PlainText: ");
                                 string plainText = Console.ReadLine();
-                                string cipherText = Core.Base64.Encode(plainText);
+                                string cipherText = Base64.Encode(plainText);
                                 Console.WriteLine($"The Encoded Text is: {cipherText}");
                                 break;
                             }
@@ -291,7 +290,7 @@ namespace LiteCrypt
                             {
                                 Console.Write("\nInput CipherText: ");
                                 string cipherText = Console.ReadLine();
-                                string plainText = Core.Base64.Decode(cipherText);
+                                string plainText = Base64.Decode(cipherText);
                                 Console.WriteLine($"The Plain Text is: {plainText}");
                                 break;
                             }
@@ -307,7 +306,7 @@ namespace LiteCrypt
         {
             Console.WriteLine("=========================================");
             Console.WriteLine("=\t\t\t\t\t=");
-            Console.WriteLine("=\tLiteCrypt.Core\t\t\t=");
+            Console.WriteLine("=\tLiteCrypt\t\t\t=");
             Console.WriteLine("=\tCreated By tinyAdapter\t\t=");
             Console.WriteLine("=\t\t\t\t\t=");
             Console.WriteLine("=========================================");
@@ -332,42 +331,42 @@ namespace LiteCrypt
 
             //CRC32
             Task t6 = new Task(() => {
-                Core.CRC32 crc32 = new Core.CRC32();
+                CRC32 crc32 = new CRC32();
                 hashCode = crc32.ComputeHashFromFile(filePath);
                 Console.WriteLine($"|> CRC32\t|{hashCode}");
             });
             t6.Start();
             //SHA512
             Task t5 = new Task(() => {
-                Core.SHA512 sha512 = new Core.SHA512();
+                SHA512 sha512 = new SHA512();
                 hashCode = sha512.ComputeHashFromFile(filePath);
                 Console.WriteLine($"|> SHA512\t|{hashCode}");
             });
             t5.Start();
             //SHA384
             Task t4 = new Task(() => {
-                Core.SHA384 sha384 = new Core.SHA384();
+                SHA384 sha384 = new SHA384();
                 hashCode = sha384.ComputeHashFromFile(filePath);
                 Console.WriteLine($"|> SHA384\t|{hashCode}");
             });
             t4.Start();
             //SHA256
             Task t3 = new Task(() => {
-                Core.SHA256 sha256 = new Core.SHA256();
+                SHA256 sha256 = new SHA256();
                 hashCode = sha256.ComputeHashFromFile(filePath);
                 Console.WriteLine($"|> SHA256\t|{hashCode}");
             });
             t3.Start();
             //SHA1
             Task t2 = new Task(() => {
-                Core.SHA1 sha1 = new Core.SHA1();
+                SHA1 sha1 = new SHA1();
                 hashCode = sha1.ComputeHashFromFile(filePath);
                 Console.WriteLine($"|> SHA1\t\t|{hashCode}");
             });
             t2.Start();
             //MD5
             Task t1 = new Task(() => {
-                Core.MD5 md5 = new Core.MD5();
+                MD5 md5 = new MD5();
                 hashCode = md5.ComputeHashFromFile(filePath);
                 Console.WriteLine($"|> MD5\t\t|{hashCode}");
             });
